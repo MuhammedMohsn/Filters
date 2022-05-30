@@ -98,7 +98,6 @@ const data = [
 ];
 // show buttons
 let buttons = ["all", ...new Set(data.map(product => (product.company)))]
-
 let filter_btns = document.querySelector(".filter_btns")
 filter_btns.innerHTML = buttons.map(btn => {
     return `<button class="filter_btn" id=${btn} >${btn}</button>`
@@ -109,13 +108,11 @@ let products_section = document.querySelector(".products_section")
 let filtered_products = [...data];
 
 function show_products() {
-
-
     if (filtered_products.length < 1) { products_section.innerHTML = `<h4>no items here</h4>` }
 
     else {
         products_section.innerHTML = filtered_products.map(product => {
-              
+
             return `<div class="product" id=${product.id}>
          <img src=${product.image} class="product_img">
          <h6 class="title text-center">${product.title}</h6>
@@ -131,15 +128,14 @@ show_products()
 let form = document.querySelector("form");
 let search_input = document.querySelector("input");
 form.addEventListener("keyup", () => {
-
     filtered_products = data.filter(product => {
         return product.title.includes(search_input.value)
     })
 
     show_products()
 })
+// filter using buttons
 let filter_btnss = document.querySelectorAll(".filter_btn")
-
 filter_btnss.forEach(btn => {
     btn.addEventListener("click", (e) => {
 
@@ -151,8 +147,5 @@ filter_btnss.forEach(btn => {
         }
         search_input.value = ''
         show_products()
-
-
-
-    })
+})
 })
